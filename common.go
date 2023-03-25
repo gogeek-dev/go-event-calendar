@@ -41,6 +41,7 @@ func AddTask(c *gin.Context) {
 		log.Println(createerr)
 	}
 
+	c.Redirect(301,"/")
 }
 
 // ListEvent
