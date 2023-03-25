@@ -103,7 +103,7 @@ func AddRouteandMigrate(r *gin.Engine, Db *gorm.DB) error {
 		return err
 	}
 
-	r.Static("/common", "./common")
+	r.Static("/public", "./public")
 
 	r.POST("/insert", AddTask)
 
