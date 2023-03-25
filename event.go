@@ -2,7 +2,9 @@ package event
 
 import (
 	"encoding/json"
+	"go/build"
 	"log"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
@@ -41,7 +43,7 @@ func AddTask(c *gin.Context) {
 		log.Println(createerr)
 	}
 
-	c.Redirect(301,"/")
+	c.Redirect(301, "/")
 }
 
 // ListEvent
@@ -103,7 +105,9 @@ func AddRouteandMigrate(r *gin.Engine, Db *gorm.DB) error {
 		return err
 	}
 
-	r.Static("/public", "./public")
+	// r.Static("/public", "./public")
+
+	r.StaticFS("/public", http.Dir(build.Default.GOPATH+"/pkg/mod/github.com/gogeek-dev/go-event-calendar@v0.0.0-20230325065118-4523b6b927ac/public"))
 
 	r.POST("/insert", AddTask)
 
