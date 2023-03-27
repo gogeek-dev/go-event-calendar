@@ -41,7 +41,7 @@ func AddTask(c *gin.Context) {
 		log.Println(createerr)
 	}
 
-	c.Redirect(301, "/")
+	c.Redirect(301, "/viewcalendar")
 }
 
 // ListEvent
@@ -87,10 +87,6 @@ func IndivDateEventandcount(c *gin.Context) {
 
 }
 
-func Check(c *gin.Context) {
-	c.HTML(200, "index.html", nil)
-}
-
 func AddRouteandMigrate(r *gin.Engine, Db *gorm.DB) error {
 
 	err := Db.AutoMigrate(
@@ -109,7 +105,7 @@ func AddRouteandMigrate(r *gin.Engine, Db *gorm.DB) error {
 
 	r.GET("/datelist", IndivDateEventandcount)
 
-	r.GET("/", ViewCalendar)
+	r.GET("/viewcalendar", ViewCalendar)
 
 	return nil
 
